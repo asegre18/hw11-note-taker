@@ -1,7 +1,7 @@
 const fs = require('fs');
 module.exports = {
   getAllNotes: async (_req, res) => {
-    await fs.readFile('./db/db.json', 'utf-9', (e, data) => {
+    await fs.readFile('./db/db.json', 'utf-8', (e, data) => {
       if (e) throw e;
       res.send(JSON.parse(data));
     });
