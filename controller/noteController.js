@@ -21,7 +21,7 @@ module.exports = {
       });
     }));
   },
-    deleteNote: async (req, res) => {
+    deleteNote: async (_req, res) => {
         const inputId = res.req.params['id'];
         console.log('DELETED ' + inputId);
         const correctId = JSON.parse(data).filter(note => note.id !== inputId);
