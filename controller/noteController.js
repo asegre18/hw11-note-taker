@@ -22,12 +22,20 @@ module.exports = {
     }));
   },
     deleteNote: async (_req, res) => {
-        const inputId = res.req.params['id'];
+        const inputId = parseInt(res.req.params['id']);
         console.log('DELETED ' + inputId);
-        const correctId = JSON.parse(data).filter(note => note.id !== inputId);
-
-        await fs.writeFile('./db/db.json', JSON.stringify(correctId), (e) => {
+        fs.readFile('./db/db.json', 'utf-8', (e, data) => {
           if (e) throw e;
+          const correctId = JSON.parse(data).filter(note => {
+            console.log(note.id, inputId);
+            if (note.id !== inputId) {
+              return true;
+            }
+          });
+        fs.writeFile('./db/db.json', JSON.stringify(correctId), (e) => {
+          if (e) throw e;
+          res.status(204).send();
         });
+        })
   }
 };
