@@ -14,7 +14,7 @@ module.exports = {
       notesList = JSON.parse(data);
       input.id = notesList.length + 1;
       notesList.push(input);
-      console.log(notesList);
+      // console.log(notesList);
 
       fs.writeFile('./db/db.json', JSON.stringify(notesList), (e) => {
         if (e) throw e;
@@ -27,7 +27,7 @@ module.exports = {
         fs.readFile('./db/db.json', 'utf-8', (e, data) => {
           if (e) throw e;
           const correctId = JSON.parse(data).filter(note => {
-            console.log(note.id, inputId);
+            // console.log(note.id, inputId);
             if (note.id !== inputId) {
               return true;
             }
